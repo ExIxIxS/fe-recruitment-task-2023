@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
-import { Layout } from '../model';
+import { Layout as LayoutModel } from '../model';
 
-type LayoutProps = Pick<Layout, 'title'> & { children: ReactNode };
+// change to appComponents!!!!
+type LayoutProps = Pick<LayoutModel, 'title'> & { children: ReactNode };
 
 function Layout(props: LayoutProps): JSX.Element {
   return (
-    <div>
+    <div className="layout">
       {props.title && <h1>{props.title}</h1>}
       {props.children}
     </div>

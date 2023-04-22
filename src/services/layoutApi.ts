@@ -8,8 +8,6 @@ const layoutQueryObj = {
     return pathname;
   },
   transformResponse: (responseData: Layout): Layout => {
-    console.log('RTK Query');
-    console.log(responseData);
     return responseData;
   },
 };

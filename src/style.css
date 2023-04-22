@@ -35,3 +35,46 @@ body {
 }
 
 /* place your styles below */
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.vertical-splitter {
+  display: grid;
+  grid-auto-flow: column dense;
+  grid-auto-columns: 1fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.horizontal-splitter {
+  display: grid;
+  grid-auto-flow: row dense;
+  grid-auto-rows: 1fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.image-tile {
+  background-size: cover; /* Use background-size: cover to ensure the image covers the entire area of the div */
+  background-position: center center; /* Center the background image horizontally and vertically */
+  /* Set any other styles for the image-tile div as needed */
+}

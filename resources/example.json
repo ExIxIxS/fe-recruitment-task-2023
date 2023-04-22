@@ -1,18 +1,4 @@
-{ "test": {
-  "rootElement": {
-    "type": "verticalSplitter",
-    "elementKey": "0bc98fac-fc1f-4f47-9bab-19a3cf60b65d",
-    "elements": [
-          {
-            "type": "textTile",
-            "elementKey": "641962fe-f92a-4993-ba75-22882eff59d5",
-            "title": "Who is my kotecek?",
-            "text": "Having a kotecek as a pet can be an incredibly rewarding experience. They are affectionate animals that provide companionship and entertainment. Koteceks are known for their playful nature and can provide hours of entertainment with their antics.",
-            "color": "mid"
-          }
-        ]
-  }
-},
+{
   "definition": {
   "rootElement": {
     "type": "verticalSplitter",
