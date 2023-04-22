@@ -1,14 +1,16 @@
-import * as React from 'react';
+import { useGetLayoutByPathQuery } from './services/layoutApi';
 import './style.css';
 
 export default function App() {
-  // load definition here
+  const { data, error, isLoading } = useGetLayoutByPathQuery('test');
 
   return (
     <div className="main">
-      {/* TODO remove title usage from template */}
-      <h1>{'Place you components here 👇'}</h1>
-      <div className="content"></div>
+      <div className="content">
+        {error && <h1>Error !!!</h1>}
+        {!error && isLoading && <h1>Loading...</h1>}
+        {!error && !isLoading && data && <h1>{JSON.stringify(data)}</h1>}
+      </div>
     </div>
   );
 }
