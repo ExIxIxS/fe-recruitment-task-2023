@@ -1,20 +1,30 @@
+import { useDispatch } from 'react-redux';
+import { updateElement } from '../features/elementSlice';
+import { useElementsStore } from '../appStore/reduxStoreHooks';
+
 import { ButtonTile as ButtonTileModel } from '../model';
 
-type ButtonTileProps = Pick<ButtonTileModel, 'text' | 'action'>;
+type ButtonTileProps = Pick<ButtonTileModel, 'elementKey' | 'text' | 'action'>;
 
 function ButtonTile(props: ButtonTileProps): JSX.Element {
-  return (
-    <button
-      onClick={() => {
-        if (props.action?.type === 'update') {
-          const value = props.action.value;
-          console.log(value);
-        }
-      }}
-    >
-      {props.text}
-    </button>
-  );
+  const dispatch = useDispatch();
+  const values = { text: props.text, action: props.action };
+  const elementStoredData = useElementsStore({
+    referenceElementKey: props.elementKey,
+    value: values,
+  });
+
+  const handleClick = () => {
+    if (elementStoredData?.action?.type === 'update') {
+      dispatch(
+        updateElement({
+          ...elementStoredData.action,
+        })
+      );
+    }
+  };
+
+  return <button onClick={handleClick}>{elementStoredData?.text}</button>;
 }
 
 export default ButtonTile;

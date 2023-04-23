@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-
-type HorizontalSplitterProps = { children: ReactNode[] }; // change to appComponents!!!!
+// change to appComponents!!!!
+type HorizontalSplitterProps = { children: ReactNode[] };
 
 function HorizontalSplitter(props: HorizontalSplitterProps): JSX.Element {
   return <div className="horizontal-splitter">{props.children}</div>;

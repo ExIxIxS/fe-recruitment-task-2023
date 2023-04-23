@@ -2,59 +2,63 @@ import Layout from './Layout';
 import VerticalSplitter from './VerticalSplitter';
 import HorizontalSplitter from './HorizontalSplitter';
 import TextTile from './TextTile';
-
-import { Layout as LayoutModel } from '../model';
 import ImageTile from './ImageTile';
 import ButtonTile from './ButtonTile';
+
+import { Layout as LayoutModel } from '../model';
 
 function LayoutTree(apiLayout: LayoutModel): JSX.Element {
   if (!apiLayout.rootElement) {
     return <div>Root element error!!!</div>;
   }
 
-  return <Layout title={apiLayout?.title}>{createComponentsTree(apiLayout.rootElement)}</Layout>;
+  return <Layout title={apiLayout?.title}>{ComponentsTree(apiLayout.rootElement)}</Layout>;
 }
 
-function createComponentsTree(rootLayout: LayoutModel['rootElement']): JSX.Element {
-  if (rootLayout.type === 'verticalSplitter') {
-    return (
-      <VerticalSplitter key={rootLayout.elementKey}>
-        {rootLayout.elements?.map(createComponentsTree)}
-      </VerticalSplitter>
-    );
-  } else if (rootLayout.type === 'horizontalSplitter') {
-    return (
-      <HorizontalSplitter key={rootLayout.elementKey}>
-        {rootLayout.elements?.map(createComponentsTree)}
-      </HorizontalSplitter>
-    );
-  } else if (rootLayout.type === 'textTile') {
-    return (
-      <TextTile
-        key={rootLayout.elementKey}
-        title={rootLayout.title}
-        text={rootLayout.text}
-      ></TextTile>
-    );
-  } else if (rootLayout.type === 'imageTile') {
-    return (
-      <ImageTile
-        key={rootLayout.elementKey}
-        title={rootLayout.title}
-        source={rootLayout.source}
-      ></ImageTile>
-    );
-  } else if (rootLayout.type === 'buttonTile') {
-    return (
-      <ButtonTile
-        key={rootLayout.elementKey}
-        text={rootLayout.text}
-        action={rootLayout.action}
-      ></ButtonTile>
-    );
-  } else {
-    // Render default component for unknown types
-    return <div>Unknown Element Type</div>;
+function ComponentsTree(treeElement: LayoutModel['rootElement']): JSX.Element {
+  switch (treeElement.type) {
+    case 'verticalSplitter':
+      return (
+        <VerticalSplitter key={treeElement.elementKey}>
+          {treeElement.elements?.map(ComponentsTree)}
+        </VerticalSplitter>
+      );
+    case 'horizontalSplitter':
+      return (
+        <HorizontalSplitter key={treeElement.elementKey}>
+          {treeElement.elements?.map(ComponentsTree)}
+        </HorizontalSplitter>
+      );
+    case 'textTile':
+      return (
+        <TextTile
+          key={treeElement.elementKey}
+          elementKey={treeElement.elementKey}
+          title={treeElement.title}
+          text={treeElement.text}
+          color={treeElement.color}
+        ></TextTile>
+      );
+    case 'imageTile':
+      return (
+        <ImageTile
+          key={treeElement.elementKey}
+          elementKey={treeElement.elementKey}
+          title={treeElement.title}
+          source={treeElement.source}
+        ></ImageTile>
+      );
+    case 'buttonTile':
+      return (
+        <ButtonTile
+          key={treeElement.elementKey}
+          elementKey={treeElement.elementKey}
+          text={treeElement.text}
+          action={treeElement.action}
+        ></ButtonTile>
+      );
+    default:
+      return <div>Unknown Element Type</div>;
   }
 }
 
