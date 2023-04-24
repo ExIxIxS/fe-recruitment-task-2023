@@ -1,5 +1,4 @@
 {
-  "definition": {
   "rootElement": {
     "type": "verticalSplitter",
     "elementKey": "0bc98fac-fc1f-4f47-9bab-19a3cf60b65d",
@@ -91,5 +90,4 @@
     ]
   },
   "title": "Kotecki 🐱🐱🐱"
-}
 }

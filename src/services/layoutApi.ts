@@ -1,7 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'; // the React-specific entry point to import createApi
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_SERVER_BASE_URL, API_SERVER_PORT } from '../constants/serverConstants';
+
 import { Layout } from '../model';
 
-const baseApiUrl = 'http://localhost:3004/';
+const baseApiUrl = `${API_SERVER_BASE_URL}:${API_SERVER_PORT}`;
 
 const layoutQueryObj = {
   query: (pathname: string) => {
@@ -12,7 +14,6 @@ const layoutQueryObj = {
   },
 };
 
-// Define a service using a base URL and expected endpoints
 export const layoutApi = createApi({
   reducerPath: 'layoutApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseApiUrl }),

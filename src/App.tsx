@@ -8,7 +8,7 @@ export default function App() {
   return (
     <div className="main">
       <div className="content">
-        {error && <h1>Error !!!</h1>}
+        {error && <h1>Error!!! {'status' in error ? error.status : 'Unknown status'}</h1>}
         {!error && isLoading && <h1>Loading...</h1>}
         {!error && !isLoading && data && LayoutTree(data)}
       </div>
