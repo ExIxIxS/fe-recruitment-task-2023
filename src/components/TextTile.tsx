@@ -14,9 +14,11 @@ function TextTile(props: TextTileProps): JSX.Element {
 
   return (
     <div className="text-tile" style={{ backgroundColor: getColor(elementStoredData?.color) }}>
-      {!elementStoredData && <h2>Element store Error!!!</h2>}
-      {elementStoredData?.title && <h2>{elementStoredData.title}</h2>}
-      {elementStoredData?.text && <p>{elementStoredData.text}</p>}
+      {!elementStoredData && <h2 className="text-tile__error">Element store Error!!!</h2>}
+      <div className="text-tile__content">
+        {elementStoredData?.title && <h2>{elementStoredData.title}</h2>}
+        {elementStoredData?.text && <p>{elementStoredData.text}</p>}
+      </div>
     </div>
   );
 }

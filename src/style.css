@@ -1,3 +1,24 @@
+:root {
+  --bg-primary-color: #242538;
+  --bg-secondary-color: #1b1c2e;
+  --bg-content-color: #b6b6cc;
+  --border-color: #242538;
+  --font-primary-color: #f0f0f5;
+  --border-radius: 10px;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/* original task code */
+
 body {
   background-color: #242538;
   font-family: Helvetica;
@@ -36,45 +57,71 @@ body {
 
 /* place your styles below */
 
-html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-*, *::before, *::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
-}
-
-img {
-  width: 100%;
-  height: auto;
-}
-
 .layout {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.vertical-splitter {
+.layout > * {
+  padding: 10px;
+}
+
+*[class$='splitter'] {
   display: grid;
-  grid-auto-flow: column dense;
-  grid-auto-columns: 1fr;
-  gap: 10px;
+  gap: 18px;
+}
+
+.vertical-splitter {
   height: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
 }
 
 .horizontal-splitter {
-  display: grid;
-  grid-auto-flow: row dense;
-  grid-auto-rows: 1fr;
-  gap: 10px;
-  height: 100%;
+  grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+}
+
+*[class$='tile'] {
+  border-radius: var(--border-radius);
+  background-color: var(--bg-primary-color);
+}
+
+.text-tile {
+  padding: 0 10px;
+  overflow: auto;
+  scrollbar-width: none; /* for Firefox */
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+}
+
+.text-tile::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 .image-tile {
-  background-size: cover; /* Use background-size: cover to ensure the image covers the entire area of the div */
-  background-position: center center; /* Center the background image horizontally and vertically */
-  /* Set any other styles for the image-tile div as needed */
+  position: relative;
+  overflow: hidden;
+}
+
+.image-tile__image {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+}
+
+.button-tile {
+  color: var(--font-primary-color);
+  border: solid 2px var(--border-color);
+  border-color: var(--font-primary-color) var(--border-color) var(--border-color) var(--font-primary-color);
+}
+
+.button-tile:hover {
+  cursor: pointer;
+  border-color: var(--border-color) var(--font-primary-color) var(--font-primary-color) var(--border-color);
+}
+
+.button-tile.button-tile--clicked {
+  border-radius: var(--border-radius);
+  background-color: var(--bg-primary-color);
+  border-color: var(--font-primary-color) var(--border-color) var(--border-color) var(--font-primary-color);
 }

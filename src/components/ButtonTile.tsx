@@ -3,11 +3,13 @@ import { updateElement } from '../features/elementSlice';
 import { useElementsStore } from '../appStore/reduxStoreHooks';
 
 import { ButtonTile as ButtonTileModel } from '../model';
+import { useState } from 'react';
 
 type ButtonTileProps = Pick<ButtonTileModel, 'elementKey' | 'text' | 'action'>;
 
 function ButtonTile(props: ButtonTileProps): JSX.Element {
   const dispatch = useDispatch();
+  const [isClicked, setIsClicked] = useState(false);
   const values = { text: props.text, action: props.action };
   const elementStoredData = useElementsStore({
     referenceElementKey: props.elementKey,
@@ -15,6 +17,9 @@ function ButtonTile(props: ButtonTileProps): JSX.Element {
   });
 
   const handleClick = () => {
+    setIsClicked(true);
+    setTimeout(() => setIsClicked(false), 200);
+
     if (elementStoredData?.action?.type === 'update') {
       dispatch(
         updateElement({
@@ -24,7 +29,14 @@ function ButtonTile(props: ButtonTileProps): JSX.Element {
     }
   };
 
-  return <button onClick={handleClick}>{elementStoredData?.text}</button>;
+  return (
+    <button
+      className={isClicked ? 'button-tile button-tile--clicked' : 'button-tile'}
+      onClick={handleClick}
+    >
+      {elementStoredData?.text}
+    </button>
+  );
 }
 
 export default ButtonTile;
