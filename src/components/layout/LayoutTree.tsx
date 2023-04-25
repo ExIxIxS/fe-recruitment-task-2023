@@ -1,11 +1,11 @@
 import Layout from './Layout';
-import VerticalSplitter from './VerticalSplitter';
-import HorizontalSplitter from './HorizontalSplitter';
-import TextTile from './TextTile';
-import ImageTile from './ImageTile';
-import ButtonTile from './ButtonTile';
+import VerticalSplitter from '../splitters/VerticalSplitter';
+import HorizontalSplitter from '../splitters/HorizontalSplitter';
+import TextTile from '../tiles/TextTile';
+import ImageTile from '../tiles/ImageTile';
+import ButtonTile from '../tiles/ButtonTile';
 
-import { Layout as LayoutModel } from '../model';
+import { Layout as LayoutModel } from '../../model';
 
 function LayoutTree(apiLayout: LayoutModel): JSX.Element {
   if (!apiLayout.rootElement) {

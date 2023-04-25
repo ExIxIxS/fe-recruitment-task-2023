@@ -1,8 +1,4 @@
-import { ReactNode } from 'react';
-import { Layout as LayoutModel } from '../model';
-
-// change to appComponents!!!!
-type LayoutProps = Pick<LayoutModel, 'title'> & { children: ReactNode };
+import { LayoutProps } from './layoutInterfaces';
 
 function Layout(props: LayoutProps): JSX.Element {
   return (

@@ -1,6 +1,6 @@
-import LayoutTree from './components/LayoutTree';
-import { useGetLayoutByPathQuery } from './services/layoutApi';
-import './style.css';
+import LayoutTree from '../components/layout/LayoutTree';
+import { useGetLayoutByPathQuery } from '../services/layoutApi';
+import '../style.css';
 
 export default function App() {
   const { data, error, isLoading } = useGetLayoutByPathQuery('definition');

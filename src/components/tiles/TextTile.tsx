@@ -1,16 +1,14 @@
-import { useElementsStore } from '../appStore/reduxStoreHooks';
-import getColor from '../utils/getColor';
+import { useElementsStore } from '../../appStore/reduxStoreHooks';
+import getColor from '../../utils/getColor';
 
-import { TextTile as TextTileModel } from '../model';
-
-type TextTileProps = Pick<TextTileModel, 'elementKey' | 'title' | 'text' | 'color'>;
+import { TextTileProps, TextTileValues } from './tilesInterfaces';
 
 function TextTile(props: TextTileProps): JSX.Element {
-  const values = { color: props.color, text: props.text, title: props.title };
+  const values: TextTileValues = { color: props.color, text: props.text, title: props.title };
   const elementStoredData = useElementsStore({
     referenceElementKey: props.elementKey,
     value: values,
-  });
+  }) as TextTileValues;
 
   return (
     <div className="text-tile" style={{ backgroundColor: getColor(elementStoredData?.color) }}>

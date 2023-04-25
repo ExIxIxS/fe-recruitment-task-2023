@@ -1,13 +1,17 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { TilesActionValues } from '../components/tiles/tilesInterfaces';
 
 const elementSlice = createSlice({
   name: 'elements',
   initialState: {
-    elements: {} as Record<string, any>, // Add an index signature for elements
+    elements: {} as Record<string, TilesActionValues>,
   },
   reducers: {
-    updateElement: (state, action: PayloadAction<{ referenceElementKey: string; value: any }>) => {
+    updateElement: (
+      state,
+      action: PayloadAction<{ referenceElementKey: string; value: TilesActionValues }>
+    ) => {
       const { referenceElementKey, value } = action.payload;
       state.elements[referenceElementKey] = { ...state.elements[referenceElementKey], ...value };
     },

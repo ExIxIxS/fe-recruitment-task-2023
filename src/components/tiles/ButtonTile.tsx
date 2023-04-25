@@ -1,20 +1,19 @@
 import { useDispatch } from 'react-redux';
-import { updateElement } from '../features/elementSlice';
-import { useElementsStore } from '../appStore/reduxStoreHooks';
-
-import { ButtonTile as ButtonTileModel } from '../model';
 import { useState } from 'react';
+import { updateElement } from '../../features/elementSlice';
+import { useElementsStore } from '../../appStore/reduxStoreHooks';
 
-type ButtonTileProps = Pick<ButtonTileModel, 'elementKey' | 'text' | 'action'>;
+import { ButtonTileProps, ButtonTileValues } from './tilesInterfaces';
 
 function ButtonTile(props: ButtonTileProps): JSX.Element {
   const dispatch = useDispatch();
   const [isClicked, setIsClicked] = useState(false);
-  const values = { text: props.text, action: props.action };
+
+  const values: ButtonTileValues = { text: props.text, action: props.action };
   const elementStoredData = useElementsStore({
     referenceElementKey: props.elementKey,
     value: values,
-  });
+  }) as ButtonTileValues;
 
   const handleClick = () => {
     setIsClicked(true);
