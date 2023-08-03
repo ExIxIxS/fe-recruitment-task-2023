@@ -1,7 +1,7 @@
-import { SplitterProps } from './splittersInterfaces';
+import { SplitterProps } from './splitters.interfaces';
 
-function VerticalSplitter(props: SplitterProps): JSX.Element {
-  return <div className="vertical-splitter">{props.children}</div>;
+function VerticalSplitter({ children }: SplitterProps): JSX.Element {
+  return <div className="vertical-splitter">{children}</div>;
 }
 
 export default VerticalSplitter;

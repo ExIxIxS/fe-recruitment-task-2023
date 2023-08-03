@@ -1,10 +1,10 @@
-import { LayoutProps } from './layoutInterfaces';
+import { LayoutProps } from './layout.interfaces';
 
-function Layout(props: LayoutProps): JSX.Element {
+function Layout({ title, children }: LayoutProps): JSX.Element {
   return (
     <div className="layout">
-      {props.title && <h1>{props.title}</h1>}
-      {props.children}
+      {title && <h1>{title}</h1>}
+      {children}
     </div>
   );
 }

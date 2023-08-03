@@ -7,12 +7,12 @@ import ButtonTile from '../tiles/ButtonTile';
 
 import { Layout as LayoutModel } from '../../model';
 
-function LayoutTree(apiLayout: LayoutModel): JSX.Element {
-  if (!apiLayout.rootElement) {
+function LayoutTree({ rootElement, title }: LayoutModel): JSX.Element {
+  if (!rootElement) {
     return <div>Root element error!!!</div>;
   }
 
-  return <Layout title={apiLayout?.title}>{ComponentsTree(apiLayout.rootElement)}</Layout>;
+  return <Layout title={title ?? ''}>{ComponentsTree(rootElement)}</Layout>;
 }
 
 function ComponentsTree(treeElement: LayoutModel['rootElement']): JSX.Element {

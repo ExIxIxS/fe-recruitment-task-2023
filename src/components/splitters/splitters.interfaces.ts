@@ -1,4 +1,4 @@
-import { AppElements } from '../layout/layoutInterfaces';
+import { AppElements } from '../layout/layout.interfaces';
 
 type SplitterProps = { children: AppElements[] };
 

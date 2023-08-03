@@ -1,19 +1,22 @@
-import { useElementsStore } from '../../appStore/reduxStoreHooks';
+import { getImageTileValues } from 'utils/getTileValues';
+import { useElementStoreData } from '../../appStore/reduxStoreHooks';
 
-import { ImageTileProps, ImageTileValues } from './tilesInterfaces';
+import { ImageTileProps } from './tiles.interfaces';
 
-function ImageTile(props: ImageTileProps): JSX.Element {
-  const values: ImageTileValues = { title: props.title, source: props.source };
-  const elementStoredData = useElementsStore({
-    referenceElementKey: props.elementKey,
-    value: values,
-  }) as ImageTileValues;
+function ImageTile({ elementKey, title, source }: ImageTileProps): JSX.Element {
+  const elementStoredData = useElementStoreData({
+    referenceElementKey: elementKey,
+    value: { title, source },
+  });
+
+  const imageTileValues = getImageTileValues(elementStoredData);
+
   return (
     <div className="image-tile">
       <img
         className="image-tile__image"
-        alt={elementStoredData?.title}
-        src={elementStoredData?.source}
+        alt={imageTileValues.title}
+        src={imageTileValues.source}
       ></img>
     </div>
   );

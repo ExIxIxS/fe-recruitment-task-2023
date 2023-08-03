@@ -1,7 +1,7 @@
-import { SplitterProps } from './splittersInterfaces';
+import { SplitterProps } from './splitters.interfaces';
 
-function HorizontalSplitter(props: SplitterProps): JSX.Element {
-  return <div className="horizontal-splitter">{props.children}</div>;
+function HorizontalSplitter({ children }: SplitterProps): JSX.Element {
+  return <div className="horizontal-splitter">{children}</div>;
 }
 
 export default HorizontalSplitter;

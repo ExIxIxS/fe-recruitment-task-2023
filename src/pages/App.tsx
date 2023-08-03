@@ -1,5 +1,5 @@
 import LayoutTree from '../components/layout/LayoutTree';
-import { useGetLayoutByPathQuery } from '../services/layoutApi';
+import { useGetLayoutByPathQuery } from '../appStore/services/layoutApi';
 import '../style.css';
 
 export default function App() {

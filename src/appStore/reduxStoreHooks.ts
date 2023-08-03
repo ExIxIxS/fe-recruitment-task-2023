@@ -1,21 +1,25 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateElement } from '../features/elementSlice';
+import { createElement } from './features/elementSlice';
 
-import { AppState } from './reduxStoreInterfaces';
-import { TilesActionValues } from 'components/tiles/tilesInterfaces';
+import { TilesActionValues } from 'components/tiles/tiles.interfaces';
+import { RootState } from './reduxStore';
 
-function useElementsStore(elementData: { referenceElementKey: string; value: TilesActionValues }) {
+function useElementStoreData(elementData: {
+  referenceElementKey: string;
+  value: TilesActionValues;
+}) {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(updateElement(elementData));
+    dispatch(createElement(elementData));
   }, [dispatch]);
 
   const elementStoredData = useSelector(
-    (state: AppState) => state.layoutElements.elements[elementData.referenceElementKey]
+    (state: RootState) => state.layoutElements[elementData.referenceElementKey]
   );
 
   return elementStoredData;
 }
 
-export { useElementsStore };
+export { useElementStoreData };

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_SERVER_BASE_URL, API_SERVER_PORT } from '../constants/serverConstants';
+import { API_SERVER_BASE_URL, API_SERVER_PORT } from '../../constants/serverConstants';
 
-import { Layout } from '../model';
+import { Layout } from '../../model';
 
 const baseApiUrl = `${API_SERVER_BASE_URL}:${API_SERVER_PORT}`;
 

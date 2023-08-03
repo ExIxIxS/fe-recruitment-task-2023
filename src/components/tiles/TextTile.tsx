@@ -1,21 +1,24 @@
-import { useElementsStore } from '../../appStore/reduxStoreHooks';
+import { getTextTileValues } from 'utils/getTileValues';
+import { useElementStoreData } from '../../appStore/reduxStoreHooks';
+
 import getColor from '../../utils/getColor';
 
-import { TextTileProps, TextTileValues } from './tilesInterfaces';
+import { TextTileProps } from './tiles.interfaces';
 
-function TextTile(props: TextTileProps): JSX.Element {
-  const values: TextTileValues = { color: props.color, text: props.text, title: props.title };
-  const elementStoredData = useElementsStore({
-    referenceElementKey: props.elementKey,
-    value: values,
-  }) as TextTileValues;
+function TextTile({ elementKey, color, text, title }: TextTileProps): JSX.Element {
+  const elementStoredData = useElementStoreData({
+    referenceElementKey: elementKey,
+    value: { color, text, title },
+  });
+
+  const textTileValues = getTextTileValues(elementStoredData);
 
   return (
-    <div className="text-tile" style={{ backgroundColor: getColor(elementStoredData?.color) }}>
+    <div className="text-tile" style={{ backgroundColor: getColor(textTileValues?.color) }}>
       {!elementStoredData && <h2 className="text-tile__error">Element store Error!!!</h2>}
       <div className="text-tile__content">
-        {elementStoredData?.title && <h2>{elementStoredData.title}</h2>}
-        {elementStoredData?.text && <p>{elementStoredData.text}</p>}
+        {textTileValues.title && <h2>{textTileValues.title}</h2>}
+        {textTileValues.text && <p>{textTileValues.text}</p>}
       </div>
     </div>
   );
